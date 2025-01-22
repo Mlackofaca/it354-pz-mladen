@@ -8,12 +8,10 @@ const Registracija = () => {
     prezime: '',
     email: '',
     password: '',
-    role: 'korisnik', // Podrazumevano korisnik
+    role: 'korisnik', 
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  // Funkcija za ažuriranje podataka u formi
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -22,30 +20,24 @@ const Registracija = () => {
     }));
   };
 
-  // Funkcija za slanje forme
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Proveravamo da li su sva polja popunjena
     const { ime, prezime, email, password, role } = formData;
     if (!ime || !prezime || !email || !password) {
       setError('Molimo popunite sva polja.');
       return;
     }
 
-    // Slanje zahteva ka json-serveru kako bismo proverili da li korisnik postoji u bazi
     try {
       const response = await fetch('http://localhost:3000/korisnici');
       const korisnici = await response.json();
 
-      // Proveravamo da li korisnik sa unetim emailom već postoji
       const korisnik = korisnici.find((k) => k.email === email);
 
       if (korisnik) {
-        // Ako korisnik već postoji, proveravamo da li je uloga ispravna
         if (korisnik.role === role) {
           console.log('Korisnik uspešno registrovan:', formData);
-          // Preusmeravamo korisnika u zavisnosti od njegove uloge
           if (role === 'administrator') {
             navigate('/admin-meni');
           } else {
