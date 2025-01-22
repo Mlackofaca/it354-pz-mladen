@@ -1,16 +1,19 @@
 {
-    "kategorije": [
-      { "id": 1, "naziv": "Pica" },
-      { "id": 2, "naziv": "Pasta" },
-      { "id": 3, "naziv": "Deserti" }
-    ],
-    "artikli": [
-      { "id": 1, "naziv": "Margarita", "kategorijaId": 1, "cena": 700 },
-      { "id": 2, "naziv": "Pepperoni", "kategorijaId": 1, "cena": 800 },
-      { "id": 3, "naziv": "Carbonara", "kategorijaId": 2, "cena": 600 },
-      { "id": 4, "naziv": "Lasagna", "kategorijaId": 2, "cena": 750 },
-      { "id": 5, "naziv": "Tiramisu", "kategorijaId": 3, "cena": 500 },
-      { "id": 6, "naziv": "Panna Cotta", "kategorijaId": 3, "cena": 550 }
-    ]
-  }
-  
+  "korisnici": [
+    { "id": 1, "ime": "Marko", "prezime": "Marković", "email": "marko@example.com", "password": "123456", "role": "korisnik" },
+    { "id": 2, "ime": "Ana", "prezime": "Anić", "email": "ana@example.com", "password": "abcdef", "role": "administrator" }
+  ],
+  "kategorije": [
+    { "id": 1, "naziv": "Pica" },
+    { "id": 2, "naziv": "Pasta" },
+    { "id": 3, "naziv": "Deserti" }
+  ],
+  "artikli": [
+    { "id": 1, "naziv": "Margarita", "kategorijaId": 1, "cena": 700 },
+    { "id": 2, "naziv": "Pepperoni", "kategorijaId": 1, "cena": 800 },
+    { "id": 3, "naziv": "Carbonara", "kategorijaId": 2, "cena": 600 },
+    { "id": 4, "naziv": "Lasagna", "kategorijaId": 2, "cena": 750 },
+    { "id": 5, "naziv": "Tiramisu", "kategorijaId": 3, "cena": 500 },
+    { "id": 6, "naziv": "Panna Cotta", "kategorijaId": 3, "cena": 550 }
+  ]
+}
