@@ -23,7 +23,7 @@ const Registracija = () => {
   };
 
   // Funkcija za slanje forme
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Proveravamo da li su sva polja popunjena
@@ -33,14 +33,33 @@ const Registracija = () => {
       return;
     }
 
-    // Simuliramo slanje podataka na backend
-    console.log('Podaci za registraciju:', formData);
+    // Slanje zahteva ka json-serveru kako bismo proverili da li korisnik postoji u bazi
+    try {
+      const response = await fetch('http://localhost:3000/korisnici');
+      const korisnici = await response.json();
 
-    // Proveravamo da li je korisnik ili administrator i preusmeravamo
-    if (role === 'administrator') {
-      navigate('/admin-meni'); // Stranica za administratore
-    } else {
-      navigate('/korisnik-meni'); // Stranica za korisnike
+      // Proveravamo da li korisnik sa unetim emailom već postoji
+      const korisnik = korisnici.find((k) => k.email === email);
+
+      if (korisnik) {
+        // Ako korisnik već postoji, proveravamo da li je uloga ispravna
+        if (korisnik.role === role) {
+          console.log('Korisnik uspešno registrovan:', formData);
+          // Preusmeravamo korisnika u zavisnosti od njegove uloge
+          if (role === 'administrator') {
+            navigate('/admin-meni');
+          } else {
+            navigate('/korisnik-meni');
+          }
+        } else {
+          setError('Uloga se ne poklapa sa podacima u bazi.');
+        }
+      } else {
+        setError('Korisnik sa tim email-om ne postoji.');
+      }
+    } catch (err) {
+      console.error('Greška pri povezivanju sa serverom:', err);
+      setError('Došlo je do greške pri povezivanju sa serverom.');
     }
   };
 
