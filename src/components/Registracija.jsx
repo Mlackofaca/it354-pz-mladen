@@ -12,6 +12,7 @@ const Registracija = () => {
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -33,21 +34,24 @@ const Registracija = () => {
       const response = await fetch('http://localhost:3000/korisnici');
       const korisnici = await response.json();
 
-      const korisnik = korisnici.find((k) => k.email === email);
+      const korisnik = korisnici.find(
+        (k) =>
+          k.email === email &&
+          k.ime === ime &&
+          k.prezime === prezime &&
+          k.password === password &&
+          k.role === role
+      );
 
       if (korisnik) {
-        if (korisnik.role === role) {
-          console.log('Korisnik uspešno registrovan:', formData);
-          if (role === 'administrator') {
-            navigate('/admin-meni');
-          } else {
-            navigate('/korisnik-meni');
-          }
+        console.log('Korisnik uspešno registrovan:', formData);
+        if (role === 'administrator') {
+          navigate('/admin-meni');
         } else {
-          setError('Uloga se ne poklapa sa podacima u bazi.');
+          navigate('/korisnik-meni');
         }
       } else {
-        setError('Korisnik sa tim email-om ne postoji.');
+        setError('Podaci se ne podudaraju sa podacima u bazi.');
       }
     } catch (err) {
       console.error('Greška pri povezivanju sa serverom:', err);
