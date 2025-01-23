@@ -9,12 +9,10 @@ const KorisnikMeni = () => {
   const [korpa, setKorpa] = useState([]);
   
   useEffect(() => {
-    // Dohvati kategorije
     fetch('http://localhost:3000/kategorije')
       .then(response => response.json())
       .then(data => setKategorije(data));
 
-    // Dohvati artikle
     fetch('http://localhost:3000/artikli')
       .then(response => response.json())
       .then(data => setArtikli(data));
