@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
+import margarita from '../slike/margarita.jpg';
+import pepperoni from '../slike/pepperoni.jpg';
+import carbonara from '../slike/carbonara.jpg';
+import lasagna from '../slike/lasagna.jpg';
+import tiramisu from '../slike/tiramisu.jpg';
+import panna from '../slike/panna.jpg';
+
 const KorisnikMeni = () => {
   const [kategorije, setKategorije] = useState([]);
   const [artikli, setArtikli] = useState([]);
@@ -27,6 +34,24 @@ const KorisnikMeni = () => {
   };
 
   const filteredArtikli = artikli.filter(artikal => artikal.kategorijaId == izabranaKategorija);
+  const getImage = (naziv) => {
+    switch(naziv.toLowerCase()) {
+      case 'margarita':
+        return margarita;
+      case 'pepperoni':
+        return pepperoni;
+      case 'carbonara':
+        return carbonara;
+      case 'lasagna':
+        return lasagna;
+      case 'tiramisu':
+        return tiramisu;
+      case 'panna':
+        return panna;
+      default:
+        return null;  
+    }
+  };
 
   return (
     <div className="korisnik-meni-container">
@@ -43,7 +68,7 @@ const KorisnikMeni = () => {
       <div className="artikli-container">
         {filteredArtikli.map(artikal => (
           <div key={artikal.id} className="artikal">
-            <img src={`path_to_images/${artikal.naziv}.jpg`} alt={artikal.naziv} />
+            <img src={getImage(artikal.naziv)} alt={artikal.naziv} />
             <h3>{artikal.naziv}</h3>
             <p>{artikal.cena} RSD</p>
             <input type="number" min="1" placeholder="Količina" id={`kolicina-${artikal.id}`} />

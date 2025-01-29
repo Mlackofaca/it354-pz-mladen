@@ -1,4 +1,4 @@
-// src/components/AdminMeni.jsx
+
 import React from 'react';
 
 const AdminMeni = () => {
