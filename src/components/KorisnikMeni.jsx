@@ -8,6 +8,7 @@ import carbonara from '../slike/carbonara.jpg';
 import lasagna from '../slike/lasagna.jpg';
 import tiramisu from '../slike/tiramisu.jpg';
 import panna from '../slike/panna.jpg';
+import korpaIkona from '../slike/korpa.jpg'; 
 
 const KorisnikMeni = () => {
   const [kategorije, setKategorije] = useState([]);
@@ -55,6 +56,20 @@ const KorisnikMeni = () => {
 
   return (
     <div className="korisnik-meni-container">
+      
+      <div className="back-button-container">
+        <Link to="/registracija">
+          <button className="back-button">Nazad</button>
+        </Link>
+      </div>
+
+      <div className="korpa-icon">
+        <Link to="/korpa">
+          <img src={korpaIkona} alt="Korpa" className="korpa-ikona" />
+          <span>{korpa.length}</span>
+        </Link>
+      </div>
+
       <h2>Izaberite kategoriju hrane</h2>
       <select onChange={handleKategorijaChange} defaultValue="">
         <option value="">-- Izaberite kategoriju --</option>
@@ -80,13 +95,6 @@ const KorisnikMeni = () => {
             </button>
           </div>
         ))}
-      </div>
-
-      <div className="korpa-icon">
-        <Link to="/korpa">
-          <img src="path_to_cart_icon.png" alt="Korpa" />
-          <span>{korpa.length}</span>
-        </Link>
       </div>
     </div>
   );
