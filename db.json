@@ -48,7 +48,7 @@
       "id": "3",
       "naziv": "Carbonara",
       "kategorijaId": 2,
-      "cena": 600
+      "cena": "700"
     },
     {
       "id": "4",
@@ -61,7 +61,8 @@
       "naziv": "Tiramisu",
       "kategorijaId": 3,
       "cena": 500
-    },{
+    },
+    {
       "id": "6",
       "naziv": "Panna Cotta",
       "kategorijaId": 3,

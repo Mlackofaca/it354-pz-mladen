@@ -15,7 +15,9 @@ const KorisnikMeni = () => {
   const [artikli, setArtikli] = useState([]);
   const [izabranaKategorija, setIzabranaKategorija] = useState(null);
   const [korpa, setKorpa] = useState([]);
-  
+  const [greska, setGreska] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     fetch('http://localhost:3000/kategorije')
       .then(response => response.json())
@@ -31,7 +33,24 @@ const KorisnikMeni = () => {
   };
 
   const handleAddToCart = (artikal, kolicina) => {
+    if (!kolicina || kolicina <= 0) {
+      setGreska("Morate uneti validnu količinu!");
+      return;
+    }
+    setGreska("");
     setKorpa(prevKorpa => [...prevKorpa, { ...artikal, kolicina }]);
+  };
+
+  const handleKorpaClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleRemoveFromCart = (artikalId) => {
+    setKorpa(prevKorpa => prevKorpa.filter(item => item.id !== artikalId));
   };
 
   const filteredArtikli = artikli.filter(artikal => artikal.kategorijaId == izabranaKategorija);
@@ -54,20 +73,21 @@ const KorisnikMeni = () => {
     }
   };
 
+  const calculateTotal = () => {
+    return korpa.reduce((total, artikal) => total + (artikal.cena * artikal.kolicina), 0);
+  };
+
   return (
     <div className="korisnik-meni-container">
-      
       <div className="back-button-container">
         <Link to="/registracija">
           <button className="back-button">Nazad</button>
         </Link>
       </div>
 
-      <div className="korpa-icon">
-        <Link to="/korpa">
-          <img src={korpaIkona} alt="Korpa" className="korpa-ikona" />
-          <span>{korpa.length}</span>
-        </Link>
+      <div className="korpa-icon" onClick={handleKorpaClick}>
+        <img src={korpaIkona} alt="Korpa" className="korpa-ikona" />
+        <span>{korpa.length}</span>
       </div>
 
       <h2>Izaberite kategoriju hrane</h2>
@@ -80,15 +100,19 @@ const KorisnikMeni = () => {
         ))}
       </select>
 
+      {greska && <p className="greska">{greska}</p>}
+
       <div className="artikli-container">
         {filteredArtikli.map(artikal => (
           <div key={artikal.id} className="artikal">
             <img src={getImage(artikal.naziv)} alt={artikal.naziv} />
-            <h3>{artikal.naziv}</h3>
-            <p>{artikal.cena} RSD</p>
+            <div className="artikal-info">
+              <h3>{artikal.naziv}</h3>
+              <p>{artikal.cena} RSD</p>
+            </div>
             <input type="number" min="1" placeholder="Količina" id={`kolicina-${artikal.id}`} />
             <button onClick={() => {
-              const kolicina = document.getElementById(`kolicina-${artikal.id}`).value;
+              const kolicina = parseInt(document.getElementById(`kolicina-${artikal.id}`).value, 10);
               handleAddToCart(artikal, kolicina);
             }}>
               Dodaj u korpu
@@ -96,6 +120,38 @@ const KorisnikMeni = () => {
           </div>
         ))}
       </div>
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Vaša korpa</h2>
+            <ul>
+              {korpa.length > 0 ? (
+                korpa.map((artikal, index) => (
+                  <li key={index}>
+                    {artikal.naziv} - {artikal.kolicina} kom
+                    <button 
+                      className="remove-button" 
+                      onClick={() => handleRemoveFromCart(artikal.id)}>
+                      Obriši
+                    </button>
+                  </li>
+                ))
+              ) : (
+                <p>Korpa je prazna</p>
+              )}
+            </ul>
+            <div className="total-sum">
+              <h3>Ukupna cena: {calculateTotal()} RSD</h3>
+            </div>
+            <div className="modal-actions">
+              <button onClick={handleCloseModal}>Nastavite sa naručivanjem</button>
+              <Link to="/korpa">
+                <button>Idi na korpu</button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
