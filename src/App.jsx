@@ -5,7 +5,7 @@ import Registracija from './components/Registracija';
 import KorisnikMeni from './components/KorisnikMeni';
 import AdminMeni from './components/AdminMeni';
 import Korpa from './components/Korpa';
-
+import PotvrdaNarudzbine from './components/PotvrdaNarudzbine';
 const App = () => {
   return (
     <Router>
@@ -15,6 +15,7 @@ const App = () => {
         <Route path="/korisnik-meni" element={<KorisnikMeni />} />
         <Route path="/admin-meni" element={<AdminMeni />} />
         <Route path="/korpa" element={<Korpa />} />
+        <Route path="/potvrda-narudzbine" element={<PotvrdaNarudzbine />} />
       </Routes>
     </Router>
   );

@@ -38,8 +38,11 @@ const KorisnikMeni = () => {
       return;
     }
     setGreska("");
-    setKorpa(prevKorpa => [...prevKorpa, { ...artikal, kolicina }]);
+    const updatedKorpa = [...korpa, { ...artikal, kolicina }];
+    setKorpa(updatedKorpa);
+    localStorage.setItem('korpa', JSON.stringify(updatedKorpa)); // Sačuvaj korpu u lokalnu memoriju
   };
+  
 
   const handleKorpaClick = () => {
     setIsModalOpen(true);
