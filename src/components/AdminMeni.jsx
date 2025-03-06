@@ -96,7 +96,7 @@ const AdminMeni = () => {
   return (
     <div className="korisnik-meni-container">
       <div className="back-button-container">
-        <Link to="/registracija">
+        <Link to="/login">
           <button className="back-button">Nazad</button>
         </Link>
       </div>

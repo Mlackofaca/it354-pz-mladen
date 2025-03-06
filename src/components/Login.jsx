@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; 
 import '../App.css';
 
-const Registracija = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
     ime: '',
     prezime: '',
     email: '',
     password: '',
-    role: 'korisnik', 
+    role: 'korisnik',
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth(); // koristi login iz AuthContext-a
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +46,8 @@ const Registracija = () => {
       );
 
       if (korisnik) {
-        console.log('Korisnik uspešno registrovan:', formData);
+        console.log('Korisnik uspešno prijavljen:', formData);
+        login(email, password, role); 
         if (role === 'administrator') {
           navigate('/admin-meni');
         } else {
@@ -60,8 +63,8 @@ const Registracija = () => {
   };
 
   return (
-    <div className="registracija-container">
-      <h2>Registruj se</h2>
+    <div className="login-container">
+      <h2>Prijavi se</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="ime">Ime</label>
@@ -120,10 +123,10 @@ const Registracija = () => {
           </select>
         </div>
         {error && <p className="error">{error}</p>}
-        <button type="submit">Registruj se</button>
+        <button type="submit">Prijavi se</button>
       </form>
     </div>
   );
 };
 
-export default Registracija;
+export default Login;

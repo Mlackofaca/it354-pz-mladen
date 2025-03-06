@@ -54,17 +54,17 @@
       "id": "4",
       "naziv": "Lasagna",
       "kategorijaId": 2,
-      "cena": "800"
+      "cena": "900"
     },
     {
       "id": "5",
       "naziv": "Tiramisu",
       "kategorijaId": 3,
-      "cena": 500
+      "cena": "600"
     },
     {
       "id": "6",
-      "naziv": "Panna Cotta",
+      "naziv": "Panna",
       "kategorijaId": 3,
       "cena": 550
     }

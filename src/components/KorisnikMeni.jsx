@@ -40,7 +40,7 @@ const KorisnikMeni = () => {
     setGreska("");
     const updatedKorpa = [...korpa, { ...artikal, kolicina }];
     setKorpa(updatedKorpa);
-    localStorage.setItem('korpa', JSON.stringify(updatedKorpa)); // Sačuvaj korpu u lokalnu memoriju
+    localStorage.setItem('korpa', JSON.stringify(updatedKorpa)); 
   };
   
 
@@ -83,7 +83,7 @@ const KorisnikMeni = () => {
   return (
     <div className="korisnik-meni-container">
       <div className="back-button-container">
-        <Link to="/registracija">
+        <Link to="/login">
           <button className="back-button">Nazad</button>
         </Link>
       </div>
