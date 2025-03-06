@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import Navigacija from './components/Navigacija';
 import Pocetna from './components/Pocetna';
 import Login from './components/Login'; 
+import Registracija from './components/Registracija'; 
 import KorisnikMeni from './components/KorisnikMeni';
 import Korpa from './components/Korpa';
 import PotvrdaNarudzbine from './components/PotvrdaNarudzbine';
@@ -16,6 +17,7 @@ const App = () => {
         <Navigacija />
         <Routes>
           <Route path="/" element={<Pocetna />} />
+          <Route path="/registracija" element={<Registracija />} /> 
           <Route path="/login" element={<Login />} /> 
           <Route path="/korisnik-meni" element={<KorisnikMeni />} />
           <Route path="/korpa" element={<Korpa />} />

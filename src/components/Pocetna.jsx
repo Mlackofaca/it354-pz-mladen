@@ -8,9 +8,9 @@ const Pocetna = () => {
       <h1 className="naslov">Dobrodošli u našu prodavnicu hrane!</h1>
 
       <div className="login-forma">
-        <h2>Login</h2>  
-        <Link to="/login">
-          <button>Prijavi se</button>  
+        <h2>Registracija</h2> 
+        <Link to="/registracija">
+          <button>Registruj se</button> 
         </Link>
       </div>
     </div>

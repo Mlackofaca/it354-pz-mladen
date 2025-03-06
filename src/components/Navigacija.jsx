@@ -10,6 +10,9 @@ const Navigacija = () => {
           <Link to="/">Početna</Link>
         </li>
         <li>
+          <Link to="/registracija">Registracija</Link>  
+        </li>
+        <li>
           <Link to="/login">Login</Link>  
         </li>
         <li>

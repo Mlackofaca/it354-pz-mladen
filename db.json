@@ -15,6 +15,14 @@
       "email": "ana@example.com",
       "password": "abcdef",
       "role": "administrator"
+    },
+    {
+      "id": "63b5",
+      "ime": "Mladen ",
+      "prezime": "Milenkovic ",
+      "email": "Mladen123@gmail.com",
+      "password": "1234",
+      "role": "korisnik"
     }
   ],
   "kategorije": [
