@@ -12,7 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 142vh;
 }
 .back-button-container {
   position: absolute;
@@ -147,19 +147,20 @@ button:hover {
 
 h2 {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 1px;
   text-align: center;
 }
 
 p {
   font-size: 1rem;
-  color: #555;
+  color: #555555;
 }
 .korisnik-meni-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  
 }
 
 .artikli-container {
@@ -205,7 +206,7 @@ p {
 }
 
 .modal-content {
-  background: white;
+  background: rgb(192, 227, 241);
   padding: 20px;
   border-radius: 8px;
   text-align: center;
@@ -241,9 +242,10 @@ p {
 }
 
 .korpa-container h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 30px;
-  color: #333;
+  color: #333333;
+  margin-top: 60px;
 }
 
 .korpa-items {
@@ -261,7 +263,7 @@ p {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(222, 225, 231, 0.05);
   background-color: #f9f9f9;
   transition: transform 0.3s ease;
 }
@@ -285,7 +287,7 @@ p {
 
 .korpa-item p {
   font-size: 1rem;
-  color: #555;
+  color: #555555;
   margin: 5px 0;
 }
 
@@ -329,7 +331,7 @@ button:focus {
 
 .korpa-item .kolicina-info {
   font-size: 1.1rem;
-  color: #333;
+  color: #333333;
   margin-top: 10px;
 }
 
@@ -409,7 +411,7 @@ button:focus {
   max-width: 1200px;
   background-color: #333;
   color: white;
-  padding: 10px 0;
+  padding: 1px ;
   z-index: 1000;
   margin-left: 10%;
   border: none;  
@@ -425,6 +427,7 @@ button:focus {
   justify-content: center;
   border: none;  
   box-shadow: none;  
+  align-items: center;
 }
 
 .navigacija li {
@@ -450,4 +453,41 @@ button:focus {
 body {
   margin-top: 60px;  
 }
+:root {
+  --boja-pozadine: white;
+  --boja-teksta: black;
+}
 
+[data-tema="tamna"] {
+  --boja-pozadine: black;
+  --boja-teksta: white;
+}
+
+body {
+  background-color: var(--boja-pozadine);
+  color: var(--boja-teksta);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  margin: 0;
+  
+}
+
+.tema-dugme {
+  padding: 10px 20px;
+  background-color: #333; 
+  color: white; 
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px; 
+  font-family: Arial, sans-serif; 
+  border: none; 
+  transition: background-color 0.3s ease;
+  margin-left: 20px; 
+  
+}
+
+.tema-dugme:hover {
+  background-color: #555; 
+}
